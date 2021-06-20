@@ -1,10 +1,18 @@
 import React from "react";
+
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const amountGenerator = () => {
     return (Math.random() * 300).toFixed(2);
   };
+
+  const addExpenseHandler = expense => {
+    expenses.push(expense);
+    console.log(expenses);
+    console.log('Inside App.js!')
+  }
 
   const expenses = [
     {
@@ -47,7 +55,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses items={expenses}/>
     </div>
   );
