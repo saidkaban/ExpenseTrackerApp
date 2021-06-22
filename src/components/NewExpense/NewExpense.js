@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import ExpenseForm from './ExpenseForm';
-import './NewExpense.css';
+import ExpenseForm from "./ExpenseForm";
+import "./NewExpense.css";
 
 const NewExpense = (props) => {
+  const [formState, setFormState] = useState("closed");
+
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
-      id: Math.random().toString(),
-      ...enteredExpenseData
+      id: Date.now(),
+      ...enteredExpenseData,
     };
-    console.log(expenseData);
     props.onAddExpense(expenseData);
-  }
+    setFormState("closed")
+  };
+
+  const formStateOpener = () => {
+    setFormState("open");
+  };
+
+  const formStateCloser = () => {
+    setFormState("closed");
+  };
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {formState === "closed" ? (
+        <button onClick={formStateOpener}>Add New Expense</button>
+      ) : (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          onCancelClick={formStateCloser}
+        />
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default NewExpense;

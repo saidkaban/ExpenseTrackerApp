@@ -1,57 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
+const amountGenerator = () => {
+  return Math.round((Math.random() * 300) * 100) / 100;
+};
+
+const DUMMY_EXPENSES = [
+  {
+    id: "e1",
+    title: "Toilet Paper",
+    amount: amountGenerator(),
+    date: new Date(2020, 7, 14),
+  },
+  {
+    id: "e2",
+    title: "New TV",
+    amount: amountGenerator(),
+    date: new Date(2021, 2, 12),
+  },
+  {
+    id: "e3",
+    title: "Car Insurance",
+    amount: amountGenerator(),
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: "e4",
+    title: "New Desk (Wooden)",
+    amount: amountGenerator(),
+    date: new Date(2021, 5, 12),
+  },
+  {
+    id: "e5",
+    title: "Zara Perfume",
+    amount: amountGenerator(),
+    date: new Date(2020, 3, 16),
+  },
+];
+
 const App = () => {
-  const amountGenerator = () => {
-    return (Math.random() * 300).toFixed(2);
-  };
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = expense => {
-    expenses.push(expense);
-    console.log(expenses);
-    console.log('Inside App.js!')
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
   }
-
-  const expenses = [
-    {
-      id: "e1",
-      title: "Toilet Paper",
-      amount: amountGenerator(),
-      date: new Date(2020, 7, 14),
-    },
-    {
-      id: "e2",
-      title: "New TV",
-      amount: amountGenerator(),
-      date: new Date(2021, 2, 12),
-    },
-    {
-      id: "e3",
-      title: "Car Insurance",
-      amount: amountGenerator(),
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e4",
-      title: "New Desk (Wooden)",
-      amount: amountGenerator(),
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e5",
-      title: "Zara Perfume",
-      amount: amountGenerator(),
-      date: new Date(2020, 3, 16),
-    },
-    {
-      id: "e6",
-      title: "Zara Perfume",
-      amount: amountGenerator(),
-      date: new Date(2020, 3, 16),
-    },
-  ];
 
   return (
     <div>
