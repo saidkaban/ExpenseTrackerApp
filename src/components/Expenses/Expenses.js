@@ -25,7 +25,7 @@ const Expenses = (props) => {
         onFilterChange={filterChangeHandler}
       />
       <ExpensesChart expenses={filteredExpenses}/>
-      <ExpensesList items={filteredExpenses} />
+      <ExpensesList items={filteredExpenses} onDelete={id => props?.onRemove(id)} />
     </Card>
   );
 };

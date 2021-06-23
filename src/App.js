@@ -49,10 +49,14 @@ const App = () => {
     });
   }
 
+  const expenseRemoveHandler = (id) => {
+    setExpenses(prev => prev.filter(item => item.id !== id));
+  }
+  // id => setExpenses(prev => prev.filter(i => i.id !== id))
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler}/>
-      <Expenses items={expenses}/>
+      <Expenses items={expenses} onRemove={expenseRemoveHandler}/>
     </div>
   );
 

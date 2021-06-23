@@ -1,0 +1,6 @@
+.remove-button::before {
+  content: 'x';
+  color: #fff;
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
